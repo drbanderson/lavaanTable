@@ -12,18 +12,29 @@
 #'   Model fit parameters: 5
 #'
 #' @param x fitted lavaan object
+#' @param std.est Do you want standardized estimates? Defaults to FALSE
 #'
 #' @return dataframe
 #'
 #' @examples
 #' tidy_lavaan()
+#' tidy_lavaan(x, std.est = TRUE)
 #'
 #' @export
 
 #' @importFrom magrittr %>%
 #' @import dplyr
-tidy_lavaan <- function(x) {
-  as_data_frame(parameterEstimates(x)) %>%
+tidy_lavaan <- function(x, std.est = FALSE) {
+  if(std.est == FALSE) {
+    model.df <- as_data_frame(parameterEstimates(x)) %>%
+      select(rhs, op, lhs, est, se, pvalue, contains("label"))
+  }
+  else {
+    model.df <- as_data_frame(standardizedSolution(x)) %>%
+      select(rhs, op, lhs, est.std, se, pvalue, contains("label")) %>%
+      rename(est.std = est)
+  }
+  model.df %>%
     select(rhs, op, lhs, est, se, pvalue, contains("label")) %>%
     filter(!rhs == lhs) %>%  # Drops intra-item variances
     # Drop unlabeled covariances only if the 'label' column is present

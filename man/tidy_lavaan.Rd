@@ -4,10 +4,12 @@
 \alias{tidy_lavaan}
 \title{Create a tidy results dataframe from a fitted lavaan object}
 \usage{
-tidy_lavaan(x)
+tidy_lavaan(x, std.est = FALSE)
 }
 \arguments{
 \item{x}{fitted lavaan object}
+
+\item{std.est}{Do you want standardized estimates? Defaults to FALSE}
 }
 \value{
 dataframe
@@ -26,5 +28,6 @@ Note the model type codes used internally to specify the type of model object.
 }
 \examples{
 tidy_lavaan()
+tidy_lavaan(x, std.est = TRUE)
 
 }
