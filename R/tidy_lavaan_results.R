@@ -24,13 +24,13 @@
 
 #' @importFrom magrittr %>%
 #' @import dplyr
-tidy_lavaan <- function(x, stdest) {
-  if(stdest == FALSE) {
-    model.df <- as_data_frame(parameterEstimates(x))
-  }
-  else {
+tidy_lavaan <- function(x, stdest = FALSE) {
+  if(stdest == TRUE) {
     model.df <- as_data_frame(standardizedSolution(x)) %>%
       rename(est = est.std)
+  }
+  else {
+    model.df <- as_data_frame(parameterEstimates(x))
   }
   model.df %>%
     select(rhs, op, lhs, est, se, pvalue, contains("label")) %>%
