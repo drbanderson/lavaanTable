@@ -12,7 +12,7 @@
 #'   Model fit parameters: 5
 #'
 #' @param x fitted lavaan object
-#' @param std.est Do you want standardized estimates? Defaults to FALSE
+#' @param stdest Do you want standardized estimates? Defaults to FALSE
 #'
 #' @return dataframe
 #'
