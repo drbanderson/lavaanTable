@@ -26,12 +26,10 @@
 #' @import dplyr
 tidy_lavaan <- function(x, std.est = FALSE) {
   if(std.est == FALSE) {
-    model.df <- as_data_frame(parameterEstimates(x)) %>%
-      select(rhs, op, lhs, est, se, pvalue, contains("label"))
+    model.df <- as_data_frame(parameterEstimates(x))
   }
   else {
     model.df <- as_data_frame(standardizedSolution(x)) %>%
-      select(rhs, op, lhs, est.std, se, pvalue, contains("label")) %>%
       rename(est = est.std)
   }
   model.df %>%
