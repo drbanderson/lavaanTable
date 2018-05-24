@@ -12,19 +12,19 @@
 #'   Model fit parameters: 5
 #'
 #' @param x fitted lavaan object
-#' @param stdest Do you want standardized estimates? Defaults to FALSE
+#' @param stdest Do you want standardized estimates? Defaults to FALSE.
 #'
 #' @return dataframe
 #'
 #' @examples
 #' tidy_lavaan()
-#' tidy_lavaan(x, std.est = TRUE)
+#' tidy_lavaan(x, stdest = TRUE)
 #'
 #' @export
 
 #' @importFrom magrittr %>%
 #' @import dplyr
-tidy_lavaan <- function(x, stdest = FALSE) {
+tidy_lavaan <- function(x, stdest = FALSE, ...) {
   if(stdest == TRUE) {
     model.df <- as_data_frame(standardizedSolution(x)) %>%
       rename(est = est.std)
