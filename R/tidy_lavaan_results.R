@@ -32,7 +32,7 @@ tidy_lavaan <- function(x, std.est = FALSE) {
   else {
     model.df <- as_data_frame(standardizedSolution(x)) %>%
       select(rhs, op, lhs, est.std, se, pvalue, contains("label")) %>%
-      rename(est.std = est)
+      rename(est = est.std)
   }
   model.df %>%
     select(rhs, op, lhs, est, se, pvalue, contains("label")) %>%
