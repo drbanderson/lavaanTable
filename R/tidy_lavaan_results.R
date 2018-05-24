@@ -29,7 +29,7 @@ tidy_lavaan <- function(x) {
     # Drop unlabeled covariances only if the 'label' column is present
     {if("label" %in% names(.)) filter(., !(op == "~~" & label == "")) else .} %>%
     # Drop the intercepts
-    filter(!op == "~1")
+    filter(!op == "~1") %>%
     mutate(est = round(est, 2),
            se = round(se, 2),
            pvalue = round(pvalue, 3)) %>%
