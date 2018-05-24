@@ -4,7 +4,7 @@
 \alias{tidy_lavaan}
 \title{Create a tidy results dataframe from a fitted lavaan object}
 \usage{
-tidy_lavaan(x, std.est = FALSE)
+tidy_lavaan(x, stdest)
 }
 \arguments{
 \item{x}{fitted lavaan object}

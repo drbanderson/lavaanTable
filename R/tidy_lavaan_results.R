@@ -24,8 +24,8 @@
 
 #' @importFrom magrittr %>%
 #' @import dplyr
-tidy_lavaan <- function(x, std.est = FALSE) {
-  if(std.est == FALSE) {
+tidy_lavaan <- function(x, stdest) {
+  if(stdest == FALSE) {
     model.df <- as_data_frame(parameterEstimates(x))
   }
   else {
