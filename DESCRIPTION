@@ -3,7 +3,7 @@ Type: Package
 Title: Tidy lavaan Model Objects
 Date: 2018-06-05
 Version: 0.0.0.9010
-Authors@R: 
+Authors@R:
     person("Brian", "Anderson", email = "drbanderson.cu@gmail.com",
                   role = c("aut", "cre"))
 Maintainer: Brian Anderson <drbanderson.cu@gmail.com>
@@ -19,3 +19,6 @@ Imports: dplyr,
     magrittr
 URL: https://github.com/drbanderson/lavaanTable
 RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>Using lavaanTable</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Using lavaanTable</h1>
+<h4 class="date"><em>June 5, 2018</em></h4>
+
+
+
+<p>Sample lavaan model:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lavaan)
+model &lt;-<span class="st"> '</span>
+<span class="st">  # measurement model</span>
+<span class="st">    ind60 =~ x1 + x2 + x3</span>
+<span class="st">    dem60 =~ y1 + y2 + y3 + y4</span>
+<span class="st">    dem65 =~ y5 + y6 + y7 + y8</span>
+<span class="st">  # regressions</span>
+<span class="st">    dem60 ~ ind60</span>
+<span class="st">    dem65 ~ ind60 + dem60</span>
+<span class="st">  # residual correlations</span>
+<span class="st">    y1 ~~ y5</span>
+<span class="st">    y2 ~~ y4 + y6</span>
+<span class="st">    y3 ~~ y7</span>
+<span class="st">    y4 ~~ y8</span>
+<span class="st">    y6 ~~ y8</span>
+<span class="st">'</span></code></pre></div>
+<p>Fit the model</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit &lt;-<span class="st"> </span><span class="kw">sem</span>(model, <span class="dt">data =</span> PoliticalDemocracy)
+<span class="kw">summary</span>(fit)
+<span class="co">#&gt; lavaan (0.6-1) converged normally after  68 iterations</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Number of observations                            75</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Estimator                                         ML</span>
+<span class="co">#&gt;   Model Fit Test Statistic                      38.125</span>
+<span class="co">#&gt;   Degrees of freedom                                35</span>
+<span class="co">#&gt;   P-value (Chi-square)                           0.329</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Parameter Estimates:</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;   Information                                 Expected</span>
+<span class="co">#&gt;   Information saturated (h1) model          Structured</span>
+<span class="co">#&gt;   Standard Errors                             Standard</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Latent Variables:</span>
+<span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
+<span class="co">#&gt;   ind60 =~                                            </span>
+<span class="co">#&gt;     x1                1.000                           </span>
+<span class="co">#&gt;     x2                2.180    0.139   15.742    0.000</span>
+<span class="co">#&gt;     x3                1.819    0.152   11.967    0.000</span>
+<span class="co">#&gt;   dem60 =~                                            </span>
+<span class="co">#&gt;     y1                1.000                           </span>
+<span class="co">#&gt;     y2                1.257    0.182    6.889    0.000</span>
+<span class="co">#&gt;     y3                1.058    0.151    6.987    0.000</span>
+<span class="co">#&gt;     y4                1.265    0.145    8.722    0.000</span>
+<span class="co">#&gt;   dem65 =~                                            </span>
+<span class="co">#&gt;     y5                1.000                           </span>
+<span class="co">#&gt;     y6                1.186    0.169    7.024    0.000</span>
+<span class="co">#&gt;     y7                1.280    0.160    8.002    0.000</span>
+<span class="co">#&gt;     y8                1.266    0.158    8.007    0.000</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Regressions:</span>
+<span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
+<span class="co">#&gt;   dem60 ~                                             </span>
+<span class="co">#&gt;     ind60             1.483    0.399    3.715    0.000</span>
+<span class="co">#&gt;   dem65 ~                                             </span>
+<span class="co">#&gt;     ind60             0.572    0.221    2.586    0.010</span>
+<span class="co">#&gt;     dem60             0.837    0.098    8.514    0.000</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Covariances:</span>
+<span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
+<span class="co">#&gt;  .y1 ~~                                               </span>
+<span class="co">#&gt;    .y5                0.624    0.358    1.741    0.082</span>
+<span class="co">#&gt;  .y2 ~~                                               </span>
+<span class="co">#&gt;    .y4                1.313    0.702    1.871    0.061</span>
+<span class="co">#&gt;    .y6                2.153    0.734    2.934    0.003</span>
+<span class="co">#&gt;  .y3 ~~                                               </span>
+<span class="co">#&gt;    .y7                0.795    0.608    1.308    0.191</span>
+<span class="co">#&gt;  .y4 ~~                                               </span>
+<span class="co">#&gt;    .y8                0.348    0.442    0.787    0.431</span>
+<span class="co">#&gt;  .y6 ~~                                               </span>
+<span class="co">#&gt;    .y8                1.356    0.568    2.386    0.017</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Variances:</span>
+<span class="co">#&gt;                    Estimate  Std.Err  z-value  P(&gt;|z|)</span>
+<span class="co">#&gt;    .x1                0.082    0.019    4.184    0.000</span>
+<span class="co">#&gt;    .x2                0.120    0.070    1.718    0.086</span>
+<span class="co">#&gt;    .x3                0.467    0.090    5.177    0.000</span>
+<span class="co">#&gt;    .y1                1.891    0.444    4.256    0.000</span>
+<span class="co">#&gt;    .y2                7.373    1.374    5.366    0.000</span>
+<span class="co">#&gt;    .y3                5.067    0.952    5.324    0.000</span>
+<span class="co">#&gt;    .y4                3.148    0.739    4.261    0.000</span>
+<span class="co">#&gt;    .y5                2.351    0.480    4.895    0.000</span>
+<span class="co">#&gt;    .y6                4.954    0.914    5.419    0.000</span>
+<span class="co">#&gt;    .y7                3.431    0.713    4.814    0.000</span>
+<span class="co">#&gt;    .y8                3.254    0.695    4.685    0.000</span>
+<span class="co">#&gt;     ind60             0.448    0.087    5.173    0.000</span>
+<span class="co">#&gt;    .dem60             3.956    0.921    4.295    0.000</span>
+<span class="co">#&gt;    .dem65             0.172    0.215    0.803    0.422</span></code></pre></div>
+<p>Format the model results using lavaanTable</p>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
