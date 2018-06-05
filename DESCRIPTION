@@ -1,8 +1,8 @@
 Package: lavaanTable
 Type: Package
 Title: Tidy lavaan Model Objects
-Date: 2018-05-24
-Version: 0.0.0.9000
+Date: 2018-06-05
+Version: 0.0.0.9010
 Authors@R: 
     person("Brian", "Anderson", email = "drbanderson.cu@gmail.com",
                   role = c("aut", "cre"))
@@ -12,7 +12,7 @@ Description: 'lavaan' is a popular package for fitting structural equation
     suitable for publication. The 'lavaanTable' package tidys a fitted 'lavaan'
     object and returns a formatted dataframe suitable for creating an html or
     latex table.
-License: CCO
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr,
